@@ -6,15 +6,13 @@
 Summary:	MnoGoSearch extension module for PHP
 Name:		php-%{modname}
 Version:	1.96
-Release:	%mkrel 10
+Release:	%mkrel 11
 Group:		Development/PHP
 URL:		http://www.mnogosearch.org/
 License:	PHP License
 Source0:	%{modname}-php-extension-%{version}.tar.bz2
 BuildRequires:	php-devel >= 3:5.2.0
 BuildRequires:	libmnogosearch-devel >= 3.2.20
-Provides:	php5-mnogosearch
-Obsoletes:	php5-mnogosearch
 Epoch:		1
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
@@ -32,6 +30,15 @@ MnoGoSearchVersion=`%{_bindir}/mnogosearch-*-config --version`
 perl -p -i -e "s|udm-config|mnogosearch-${MnoGoSearchVersion}-config|g" config.m4
 
 %build
+export CFLAGS="%{optflags}"
+export CXXFLAGS="%{optflags}"
+export FFLAGS="%{optflags}"
+
+%if %mdkversion >= 200710
+export CFLAGS="$CFLAGS -fstack-protector"
+export CXXFLAGS="$CXXFLAGS -fstack-protector"
+export FFLAGS="$FFLAGS -fstack-protector"
+%endif
 
 MnoGoSearchVersion=`%{_bindir}/mnogosearch-*-config --version`
 export EXTRA_INCLUDES="-I%{_includedir}/mnogosearch-${MnoGoSearchVersion} -I%{_includedir}"
@@ -65,5 +72,3 @@ EOF
 %doc CREDITS README index.php
 %config(noreplace) %attr(0644,root,root) %{_sysconfdir}/php.d/%{inifile}
 %attr(0755,root,root) %{_libdir}/php/extensions/%{soname}
-
-
