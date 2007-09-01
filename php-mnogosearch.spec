@@ -6,7 +6,7 @@
 Summary:	MnoGoSearch extension module for PHP
 Name:		php-%{modname}
 Version:	1.96
-Release:	%mkrel 11
+Release:	%mkrel 12
 Group:		Development/PHP
 URL:		http://www.mnogosearch.org/
 License:	PHP License
@@ -31,15 +31,7 @@ MnoGoSearchVersion=`%{_bindir}/mnogosearch-*-config --version`
 perl -p -i -e "s|udm-config|mnogosearch-${MnoGoSearchVersion}-config|g" config.m4
 
 %build
-export CFLAGS="%{optflags}"
-export CXXFLAGS="%{optflags}"
-export FFLAGS="%{optflags}"
-
-%if %mdkversion >= 200710
-export CFLAGS="$CFLAGS -fstack-protector"
-export CXXFLAGS="$CXXFLAGS -fstack-protector"
-export FFLAGS="$FFLAGS -fstack-protector"
-%endif
+%serverbuild
 
 MnoGoSearchVersion=`%{_bindir}/mnogosearch-*-config --version`
 export EXTRA_INCLUDES="-I%{_includedir}/mnogosearch-${MnoGoSearchVersion} -I%{_includedir}"
