@@ -6,7 +6,7 @@
 Summary:	MnoGoSearch extension module for PHP
 Name:		php-%{modname}
 Version:	1.96
-Release:	%mkrel 15
+Release:	%mkrel 16
 Group:		Development/PHP
 URL:		http://www.mnogosearch.org/
 License:	PHP License
@@ -15,7 +15,7 @@ BuildRequires:	php-devel >= 3:5.2.0
 BuildRequires:	libmnogosearch-devel >= 3.2.20
 BuildRequires:	postgresql-devel
 Epoch:		1
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 This is a dynamic shared object (DSO) for PHP that will allow you to access
