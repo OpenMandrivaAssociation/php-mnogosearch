@@ -6,7 +6,7 @@
 Summary:	MnoGoSearch extension module for PHP
 Name:		php-%{modname}
 Version:	1.96
-Release:	%mkrel 17
+Release:	%mkrel 18
 Group:		Development/PHP
 URL:		http://www.mnogosearch.org/
 License:	PHP License
@@ -36,7 +36,7 @@ perl -p -i -e "s|udm-config|mnogosearch-${MnoGoSearchVersion}-config|g" config.m
 %serverbuild
 
 MnoGoSearchVersion=`%{_bindir}/mnogosearch-*-config --version`
-export EXTRA_INCLUDES="-I%{_includedir}/mnogosearch-${MnoGoSearchVersion} -I%{_includedir}"
+export EXTRA_INCLUDES="-I%{_includedir}/mnogosearch-${MnoGoSearchVersion} -I%{_includedir} -I%{_includedir}/pgsql"
 
 phpize
 %configure2_5x --with-libdir=%{_lib} \
@@ -48,7 +48,7 @@ mv modules/*.so .
 chrpath -d %{soname}
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot} 
+rm -rf %{buildroot} 
 
 install -d %{buildroot}%{_libdir}/php/extensions
 install -d %{buildroot}%{_sysconfdir}/php.d
@@ -72,7 +72,7 @@ if [ "$1" = "0" ]; then
 fi
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 %files 
 %defattr(-,root,root)
