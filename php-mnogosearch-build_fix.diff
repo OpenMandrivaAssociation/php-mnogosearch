@@ -1,0 +1,20 @@
+--- php_mnogo.c	2005-01-23 16:04:56.000000000 +0100
++++ php_mnogo.c.oden	2008-07-19 15:50:37.000000000 +0200
+@@ -917,7 +917,7 @@ DLEXPORT PHP_FUNCTION(udm_set_agent_para
+ 				php_error_docref(NULL TSRMLS_CC, E_WARNING, "%s",Agent->Conf->errstr);
+ 				RETURN_FALSE;
+ #if UDM_VERSION_ID >= 30204
+-			} else UdmSynonymListSort(&(Agent->Conf->Synonyms));
++			} else UdmSynonymListSort(Agent->Conf->Synonym.Item);
+ #else
+ 			} else UdmSynonymListSort(&(Agent->Conf->SynList));
+ #endif			
+@@ -1718,7 +1718,7 @@ DLEXPORT PHP_FUNCTION(udm_set_agent_para
+ 		if (UdmSynonymListLoad(Agent->Conf,val)) {
+ 			php_error_docref(NULL TSRMLS_CC, E_WARNING, "%s",Agent->Conf->errstr);
+ 			RETURN_FALSE;
+-		} else UdmSynonymListSort(&(Agent->Conf->Synonyms));
++		} else UdmSynonymListSort(Agent->Conf->Synonym.Item);
+ 	} else if (!strcasecmp(var,"Stopwordfile")) {
+ 		if (UdmStopListLoad(Agent->Conf,val)) {
+ 			php_error_docref(NULL TSRMLS_CC, E_WARNING, "%s", Agent->Conf->errstr);
