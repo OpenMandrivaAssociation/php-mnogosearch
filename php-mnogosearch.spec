@@ -8,7 +8,7 @@ Name:		php-%{modname}
 Version:	1.96
 Release:	%mkrel 37
 Group:		Development/PHP
-URL:		http://www.mnogosearch.org/
+URL:		https://www.mnogosearch.org/
 License:	PHP License
 Source0:	%{modname}-php-extension-%{version}.tar.bz2
 Patch0:		php-mnogosearch-build_fix.diff
