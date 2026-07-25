@@ -6,7 +6,7 @@
 Summary:	MnoGoSearch extension module for PHP
 Name:		php-%{modname}
 Version:	1.96
-Release:	%mkrel 37
+Release:	38
 Group:		Development/PHP
 URL:		https://www.mnogosearch.org/
 License:	PHP License
